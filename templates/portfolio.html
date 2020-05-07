@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load  static %}
+
+
+{% block title %}
+    Portfolio
+{% endblock  %}
+    
+
+
+{% block content %}
+     <!-- Single Page -->
+     <main class="single-page">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h2>.<span>portfolio</span></h2>
+            <p>Here are some projects that i have worked on with my skills</p>
+        </div> <!-- Page Header End -->
+        <div class="separator"></div>
+        <div class="portfolio-wrapper">
+            <div class="row">
+                <div class="col-xl-12">
+                    <!-- Filter Buttons -->
+                    <div class="button-group portfolio-btn text-right mb-40">
+                        {% for cat in categories %}
+                        <button data-toggle="tooltip" data-placement="top" title="16 Items" class="active pointer-href" data-filter="*">{{cat.title}}</button>
+                        {% endfor %}
+                    </div> <!-- Filter Buttons End -->
+                </div>
+            </div>
+            <!-- Portfolio Grid -->
+            <div class="row grid no-gutters">
+                {% for project in projects %}
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 grid-item cat1 cat3">
+                    <div class="portfolio-image-block">
+                        
+                        {% if project.image %}                            
+                        <img src="{{project.image.url}}" alt="portfolio image" class="ml-3">
+                        <div class="portfolio-image-info">
+                            <a href="{{project.image.url}}" class="gallery_popup pointer-open"><i class="fas fa-search"></i></a>
+                        {% endif %}
+                            <h4 class="body-font">{{project.project}}</h4>
+                        </div>
+                        <div class="image-hover-btn">
+                            <div class="full-view-btn">
+                                <a href="{% url 'project' project.pk %}" class="pointer-href">Full view</a>
+                            </div>
+                            <div class="load-more-btn">
+                                <a href="{% url 'project' project.pk %}" class="pointer-href">Load more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                        
+            </div> <!-- Portfolio Grid End -->
+        </div>
+
+        {% include 'company.html' %}
+    </main> <!-- Single page end -->
+
+
+{% endblock  %}
+    
+   

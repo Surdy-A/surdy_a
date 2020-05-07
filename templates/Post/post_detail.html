@@ -1,0 +1,160 @@
+{%extends 'base.html' %}
+{% load static %}
+{% load blog_tags %}
+
+{% block content %}
+    <!-- Single Page -->
+    <main class="single-page">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h2><a href="blog.html" class="pointer-large">.<span>Surdy_A</span></a> <span>.</span>Blog</h2>
+        </div> <!-- Page Header End -->
+        <div class="separator"></div>
+        <div class="blog-details-wrapper">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8">
+                    <div class="details-content-left">
+                        <!-- Blog Header -->
+                        <div class="blog-info clearfix">
+                            <div class="blog-overview-block">
+                                <div class="blog-head-thumb">
+                                    <img src="{% static 'img/blog/blog-details/thumb-big.jpg' %}" alt="blog thumb">
+                                </div>
+                                <div class="blog-overview">
+                                    <ul>
+                                        <li><a href="#" class="newsfeed-calendar pointer-small"><i class="fas fa-calendar-alt"></i>{{post.publish}}</a></li>
+                                        <li><a href="#" class="newsfeed-tag pointer-small"><i class="fas fa-tag"></i> {{post.author}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <div class="blog-share-links">
+                                <span>Share with</span>
+                                <ul>
+                                    <li><a href="#" class="pointer-href"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="#" class="pointer-href"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#" class="pointer-href"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#" class="pointer-href"><i class="fab fa-linkedin-in"></i></a></li>
+
+                                </ul>
+                            </div> -->
+                        </div> <!-- Blog Header End -->
+                        <!-- Blog Body -->
+                        <div class="blog-body">
+                            <h3 class="theme-color"></h3>
+                            <p>{{post.body}}</p>
+                           
+                            <div class="body-tags mb-50 mt-30">
+                                <h6 class="body-font">TAG:</h6>
+                                
+                                
+                                    
+                                <div class="tag-keywords">
+                                    {% for tag in post.tags.all %}
+                                    <a href="{% url 'blog:post_list_by_tag' tag.slug %}" class="pointer-small">{{tag.name}}</a>
+                                    {% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                                     </div>
+                            </div>
+                            <div class="blog-comment-box">
+                                {% with comments.count as total_comments %}
+                                <h4 class="mb-20">
+                                {{ total_comments }} comment{{ total_comments|pluralize }}
+                                </h4>
+                                  {% endwith %}
+                                  {% for comment in comments %}
+
+                                <div class="body-highlight">
+                                    <p><span>{{ comment.body|linebreaks }}</span>
+                                        <br>
+                                   by {{ comment.name }} {{ comment.created }}
+                                        </p>
+                                        
+                                </div>
+                                {%endfor%}
+                                <h4 class="mb-40">Leave a comment:</h4>
+                                <form action="." method="POST">
+                                    {{ comment_form.as_p }}
+                                 {% csrf_token %}
+                                                <button class="btn btn-danger text-center" type="submit">POST COMMENT</button>
+
+                                </form>
+                            </div>
+                        </div> <!-- Blog Body End -->
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4">
+                    <div class="details-content-right">
+                        <!-- Search Bar -->
+                        
+                        <div class="post-search mb-70">
+                            <form action="." method="get">
+                                <input class="pointer-input" value="" placeholder="Search here..." type="text">
+                                <button class="post-search-box pointer-href" type="submit"> <i class="fas fa-search" aria-hidden="true"></i> </button>
+                            </form>
+                        </div> <!-- Search Bar End -->
+                        <!-- Instagram -->
+                      
+                        <!-- Similar Posts -->
+                        <div class="recent-posts subtitle mb-70">
+                            <h3 class="mb-40">.<span>Similar</span> posts</h3>
+                            <ul>
+                                {% for post in similar_posts %}
+                                <li>
+                                    <a href="{{ post.get_absolute_url }}" class="pointer-href">
+                                        <div class="single-post clearfix">
+                                            <div class="post-thumb">
+                                                <img src="img/blog/blog-details/sidebar-thumb/1.jpg" alt="post thumb">
+                                            </div>
+                                            <div class="post-content">
+                                                <h5 class="body-font">{{post.title}}</h5>
+                                                <span><i class="fas fa-calendar-alt"></i>{{post.publish}}</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                {% empty %}
+                                There are no similar posts yet.
+
+
+                            {% endfor %}
+
+                            </ul>
+                        </div>
+
+
+                         
+
+                       <!-- Recent Posts End -->
+                        <!-- Archives
+                        <div class="find-archives subtitle mb-60">
+                            <h3 class="mb-40">.<span>find</span> archives</h3>
+                            <ul>
+                                <li><a href="#" class="pointer-href">2018</a></li>
+                                <li><a href="#" class="pointer-href">2017</a></li>
+                                <li><a href="#" class="pointer-href">2016</a></li>
+                                <li><a href="#" class="pointer-href">2015</a></li>
+                                <li><a href="#" class="pointer-href">2014</a></li>
+                                <li><a href="#" class="pointer-href">2013</a></li>
+                            </ul>
+                        </div> 
+                        <!-- Search by Category 
+                        <div class="search-category subtitle">
+                            <h3 class="mb-40">.<span>search</span> categories</h3>
+                            <ul>
+                                <li><a href="#" class="pointer-href">Graphics</a></li>
+                                <li><a href="#" class="pointer-href">Branding</a></li>
+                                <li><a href="#" class="active pointer-href">Web Design</a></li>
+                                <li><a href="#" class="pointer-href">Web Development</a></li>
+                                <li><a href="#" class="pointer-href">Travel</a></li>
+                                <li><a href="#" class="pointer-href">Trending</a></li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main> <!-- Single page end -->
+
+{% endblock  %}
+    
+  

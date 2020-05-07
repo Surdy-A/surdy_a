@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Surdy_A Porfolio
+{% endblock  %}
+
+
+{% block content %}
+<!-- Single Page -->
+<main class="single-page">
+    <!-- Page Header -->
+    <div class="separator"></div>
+    <div class="portfolio-details-wrapper">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8">
+                <div class="details-content-left">
+                    <!-- Project Body -->
+                    <div class="project-body">
+                        <h3 class="theme-color text-center">{{project.project}}</h3>
+                        <div class="body-content-image">
+                            <img src="{{project.image.url}}" alt="project image">
+                        </div>
+                        <p>{{project.description}}.</p>
+                        <!-- Project Video -->
+                        <!-- <div class="body-feature-video text-center">
+                                <a href="https://www.youtube.com/watch?v=aqz-KE-bpKQ" class="popup_video pointer-large"><i class="fas fa-play"></i></a>
+                            </div>  -->
+                    </div> <!-- Project Body End -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'company.html' %}
+</main> <!-- Single page end -->
+{% endblock  %}

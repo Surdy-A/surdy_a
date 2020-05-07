@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_tags %}
+{% block content %}
+<!--         Single Page -->
+<main class="single-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2 style="text-align: center;">Surdy_A<span> Blog</span></h2>
+        <p style="text-align:center;">Read Technology and Software Development Articles by Ajayi Sodiq</p>
+
+        <div class="post-search mb-70">
+            <form action="" method="GET" value="{{request.GET.q}}">
+                <input class="pointer-input" name='q' value="{{request.Get.q}}" placeholder="Search here..." type="text">
+                <button class="post-search-box pointer-href" type="submit" name="submit" value="Search"> <i class="fas fa-search" aria-hidden="true"></i> </button>
+            </form>
+        </div> <!-- Search Bar End -->
+
+    </div> <!-- Page Header End -->
+    <div class="separator"></div>
+    {% if search_query%}
+    Search Result for "{{search_query}}"
+    <div class="blog-wrapper">
+        <div class="row grid-3">
+            <!-- Blog Single Container -->
+            {% for post in posts %}
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 grid-item-3" style="margin-bottom: 20px;">
+                <div class="newsfeed-container">
+                    <div class="newsfeed-image">
+                        {% if post.image %}
+                        <a href=" {{ post.get_absolute_url }}"><img src="{{post.image_thumbnail.url}}"
+                                alt="blog image"></a>
+                        {% else %}
+                        <img src="{% static 'img/blog/blog-grid/1.jpg' %}" alt="blog image">
+                        {% endif %}
+                        <div class="date-box">
+                            <span>{{post.created | date:"M j, Y"}}</span>
+                        </div>
+                    </div>
+                    <div class="newsfeed-wrap">
+                        <div class="newsfeed-header">
+                            <a href="#" class="newsfeed-tag pointer-small"><i class="fas fa-tag"></i>
+                                {{post.category}}</a>
+                            {% if tag %}
+                            <a href="#" class="newsfeed-user pointer-small"><i class="fas fa-user"></i> {{tag.name}}</a>
+                            {% endif %}
+                            <a href="#" class="newsfeed-user pointer-small"><i class="fas fa-user"></i>
+                                {{post.author}}</a>
+                        </div>
+                        <div class="newsfeed-content">
+                            <h4><a href="{{ post.get_absolute_url }}" class="pointer-href">{{post.title}}</a></h4>
+                            <p>{{post.body | truncatewords:30}}
+                            </p>
+                        </div>
+                        <div class="blog-btn">
+                            <a href="{{ post.get_absolute_url }}" class="pointer-href">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- Pagination -->
+
+        {% include 'Post/pagination.html' with page=posts %}
+        <!-- Pagination End -->
+    </div>
+    {% elif search_query == "" %}
+    <p>Please Enter something into the Search Bar</p>
+    {% else %}
+    <div class="blog-wrapper">
+        <div class="row grid-3">
+            <!-- Blog Single Container -->
+            {% for post in posts %}
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 grid-item-3" style="margin-bottom: 20px;">
+                <div class="newsfeed-container">
+                    <div class="newsfeed-image">
+                        {% if post.image %}
+                        <a href=" {{ post.get_absolute_url }}"><img src="{{post.image_thumbnail.url}}"
+                                alt="blog image"></a>
+                        {% else %}
+                        <img src="{% static 'img/blog/blog-grid/1.jpg' %}" alt="blog image">
+                        {% endif %}
+                        <div class="date-box">
+                            <span>{{post.created | date:"M j, Y"}}</span>
+                        </div>
+                    </div>
+                    <div class="newsfeed-wrap">
+                        <div class="newsfeed-header">
+                            <a href="#" class="newsfeed-tag pointer-small"><i class="fas fa-tag"></i>
+                                {{post.category}}</a>
+                            {% if tag %}
+                            <a href="#" class="newsfeed-user pointer-small"><i class="fas fa-user"></i> {{tag.name}}</a>
+                            {% endif %}
+                            <a href="#" class="newsfeed-user pointer-small"><i class="fas fa-user"></i>
+                                {{post.author}}</a>
+                        </div>
+                        <div class="newsfeed-content">
+                            <h4><a href="{{ post.get_absolute_url }}" class="pointer-href">{{post.title}}</a></h4>
+                            <p>{{post.body | truncatewords:30}}
+                            </p>
+                        </div>
+                        <div class="blog-btn">
+                            <a href="{{ post.get_absolute_url }}" class="pointer-href">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- Pagination -->
+
+        {% include 'Post/pagination.html' with page=posts %}
+        <!-- Pagination End -->
+    </div>
+    {% endif %}
+
+</main> <!-- Single page end -->
+{% endblock  %}

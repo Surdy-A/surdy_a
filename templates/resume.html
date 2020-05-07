@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block  title %}
+Resume
+{% endblock   %}
+    
+
+{% block content %}
+   <!-- Single Page -->
+   <main class="single-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2>.<span>resume</span></h2>
+        <p>Hello, I’m Ajayi Sodiq. A young innovative Software Engineer with a 
+            great passion for developing Software applications
+             that can improve the effectiveness and the production 
+             of business organizations. Being a fast learner and taking 
+             personal development to be very essential has always helped me 
+             to be upto date in the field of technology.</p>
+        <div class="template-btn">
+            <a href="{% url 'service:contact' %}" class="pointer-href">Hire me</a>
+            <a href="https://drive.google.com/file/d/1-EdSvgDeNUCMDowO_q8pBbJExSMlIocY/view?usp=drivesdk" class="pointer-href">Download CV</a>
+        </div>
+    </div> <!-- Page Header End -->
+    <div class="separator"></div>
+    <div class="resume-wrapper">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8">
+                <div class="resume-content-left">
+                    <!-- Education Timeline -->
+                    <div class="education subtitle mb-70">
+                        <h3 class="mb-40">.<span>education</span></h3>
+                        <div class="timeline clearfix">
+                            
+                            {% for  edu in education %}
+                                
+                                
+                            <div class="timeline-item clearfix">
+                                <div class="timeline-left">
+                                    <h6 class="item-period body-font">{{edu.year}}</h6>
+                                    <span class="item-company"></span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="timeline-right">
+                                    <h6 class="item-title body-font"></h6>
+                                    <p><span class="item-period body-font">School: </span> {{edu.school}}</p>
+                                    <br>
+                                    <p><span class="item-period body-font">Certificate: </span> {{edu.certificate}}</p>
+
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                    <!-- Timeline - Experience -->
+                    <div class="experience subtitle">
+                        <h3 class="mb-40">.<span>experience</span></h3>
+                        
+                        {% for exp in  experiences %}
+                        <div class="timeline clearfix">
+                            <div class="timeline-item clearfix">
+                                <div class="timeline-left">
+                                    <h6 class="item-period body-font">{{exp.duration}}</h6>
+                                    <span class="item-company">{{exp.company}}</span>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="timeline-right">
+                                    <h6 class="item-title body-font">{{exp.role}}</h6>
+                                    <p>{{exp.responsibilities}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4">
+                <div class="resume-content-right">
+                    <!-- Skills -->
+                    <div class="skills clearfix">
+                        <div class="design-skill subtitle mb-70">
+                            <h3 class="mb-40">.<span>Technical </span>skills</h3>
+                            
+                            {% for skill in skills %}
+                            <div class="single-skill">
+                                <div class="skillbar-title"><span>{{skill.skill}}</span></div>
+                                <div class="skill-bar-percent">{{skill.skill_percent}}%</div>
+                                <div class="skillbar clearfix" data-parcent="80%">
+                                    <div class="skillbar-bar"></div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                        <!-- <div class="developing-skill subtitle">
+                            <h3 class="mb-40">.<span>developing </span>skills</h3>
+                            <div class="single-skill">
+                                <div class="skillbar-title"><span>HTML/CSS</span></div>
+                                <div class="skill-bar-percent">90%</div>
+                                <div class="skillbar clearfix" data-parcent="90%">
+                                    <div class="skillbar-bar"></div>
+                                </div>
+                            </div>
+                            <div class="single-skill">
+                                <div class="skillbar-title"><span>Javascript</span></div>
+                                <div class="skill-bar-percent">70%</div>
+                                <div class="skillbar clearfix" data-parcent="70%">
+                                    <div class="skillbar-bar"></div>
+                                </div>
+                            </div>
+                            <div class="single-skill">
+                                <div class="skillbar-title"><span>PHP</span></div>
+                                <div class="skill-bar-percent">80%</div>
+                                <div class="skillbar clearfix" data-parcent="80%">
+                                    <div class="skillbar-bar"></div>
+                                </div>
+                            </div>
+                            <div class="single-skill">
+                                <div class="skillbar-title"><span>WordPress</span></div>
+                                <div class="skill-bar-percent">90%</div>
+                                <div class="skillbar clearfix" data-parcent="90%">
+                                    <div class="skillbar-bar"></div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div> <!-- Skills End -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="portfolio-feature-image">
+        <div class="row">
+        
+            {% for certificate in certificates %}
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                <div class="feature-single-image text-center">
+                    {% if certificate.image %}
+                    <img src="{{certificate.image.url}}" alt="portfolio image">
+                    <div class="portfolio-popup-block">
+                        <a href="{{certificate.image.url}}" class="portfolio_feature_popup pointer-open"><i class="fas fa-search"></i></a>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    {% include 'company.html' %}
+</main> <!-- Single page end -->
+
+{% endblock  %}
+    

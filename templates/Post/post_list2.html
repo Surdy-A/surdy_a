@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<main class="single-page">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2>.<span>blog</span></h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna neque, pulvinar in orci in, pellentesque consequat tellus. Fusce mauris massa, pellentesque nec augue at, hendrerit rutrum ex. Cras venenatis vulputate nisi ut elementum.</p>                
+    </div> <!-- Page Header End -->
+    <div class="separator"></div>
+    <div class="blog-wrapper">                    
+        <div class="row grid-3">
+            <!-- Blog Single Container -->
+            
+            {% for post in post_list %}
+                
+                
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 grid-item-3">
+                <div class="newsfeed-container">
+                    <div class="newsfeed-image">
+                        
+                        {% if  post.image %}
+                        <img src="{{post.image_thumbnail.url}}" alt="blog image">
+                        {% else %}
+                        <img src="{% static 'img/blog/blog-grid/1.jpg' %}" alt="blog image">
+                        {% endif %}
+                            
+
+                            
+                        <div class="date-box">
+                            <span>{{post.created | date:"M j, Y"}}</span>
+                        </div>
+                    </div>
+                    <div class="newsfeed-wrap">
+                        <div class="newsfeed-header">
+                            <a href="#" class="newsfeed-tag pointer-small"><i class="fas fa-tag"></i> Branding</a>
+                            <a href="#" class="newsfeed-user pointer-small"><i class="fas fa-user"></i> {{post.author}}</a>                                
+                        </div>
+                        <div class="newsfeed-content">
+                            <h4><a href="{% url 'blog:post_detail' post.pk %}" class="pointer-href">{{post.title}}</a></h4>
+                            <p>{{post.body | truncatewords:30}}
+                            </p>
+                        </div>
+                        <div class="blog-btn">
+                            <a href="{% url 'blog:post_detail' post.pk %}blog-details.html" class="pointer-href">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Blog Single Container End -->
+            <!-- Blog Single Container -->
+            {% endfor %}
+            
+        </div>
+        <!-- Pagination -->
+        <div class="pagination-block">
+            <nav>
+                <ul>
+                    <li><a href="#" class="pointer-href"><i class="fas fa-chevron-left"></i> Prev</a></li>
+                    <li><a href="#" class="pointer-href">1</a></li>
+                    <li><a href="#" class="active pointer-href">2</a></li>
+                    <li><a href="#" class="pointer-href">3</a></li>
+                    <li><a href="#" class="pointer-href">4</a></li>
+                    <li><a href="#" class="pointer-href">Next <i class="fas fa-chevron-right"></i></a></li>
+                </ul>
+            </nav>
+        </div> <!-- Pagination End -->
+    </div>
+</main> <!-- Single page end -->
+
+{% endblock  %}
+    
+    <!-- Single Page -->
+   

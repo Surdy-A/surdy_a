@@ -1,0 +1,179 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+
+<head>
+    <meta charset="utf-8">
+    <title>Surdy_A</title>
+    <meta name="description" content="Sodiq Ajayi (Surdy_A) portfolio">
+    <meta name="keywords" content="web design, web development, programming, graphics designing">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="weexen">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/apple-touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/apple-touch-icon-114x114.png' %}">
+    <!-- All CSS Called Here -->
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <meta name="theme-color" content="#f12365">
+</head>
+
+<body>
+    <!--[if IE]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- Preloader -->
+    <div class="loader-mask">
+        <div class="loader"></div>
+    </div> <!-- Preloader end -->
+
+    <!-- Custom Cursor -->
+    <div class="pointer" id="pointer"></div>
+    <!-- Custom Cursor end -->
+
+    <!-- Sidebar -->
+    <header class="sidebar">
+        <div class="backgroundShape-left"></div>
+        <div class="sidebar-content clearfix">
+            <!-- Main Menu Button -->
+            <div class="menu-icon">
+                <button id="nav_btn" class="pointer-open"><i class="fas fa-bars"></i></button>
+            </div> <!-- Main Menu Button End -->
+            <!-- My Image -->
+            <div class="author-image theme-bg-color">
+                <img src="{% static 'img/author/surdy_a.jpg' %}" alt="author-image">
+            </div> <!-- My Image End -->
+            <!-- My Social Links -->
+            <div class="author-social-icons text-center">
+                <ul>
+                    <li><a href="https://github.com/surdy-a" class="pointer-href" target="blank"><i class="fab fa-github"></i></a></li>
+                    <li><a href="https://www.facebook.com/surdyhey" class="pointer-href" target="blank"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="https://twitter.com/surdy_a" class="pointer-href" target="blank"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/surdya/" class="pointer-href" target="blank"><i class="fab fa-linkedin-in"></i></a></li>
+                </ul>
+            </div> <!-- My Social Links End -->
+            <!-- Copyright -->
+            <div class="copyright-area text-center">
+                <p style="margin-top: 20px;"><a href="/"></a><span>
+                        <script>document.write(new Date().getFullYear());</script></span></p>
+            </div> <!-- Copyright End -->
+        </div>
+    </header> <!-- Sidebar end -->
+
+
+
+
+
+    {% block content %}
+
+    {% endblock  %}
+
+
+
+    <!-- ======================================= -->
+    <!-- MAIN MENU -->
+    <!-- ======================================= -->
+    <!-- Menu Container -->
+    <nav class="menu-container overlay-bg">
+        <!-- Menu Close -->
+        <div class="menu-close pointer-large"></div>
+
+        <!-- Sub Menu Close -->
+        <div class="submenu-close-box">
+            <div class="submenu-close pointer-large">
+                <button type="button"><i class="fas fa-arrow-left"></i>BACK</button>
+            </div>
+        </div><!-- Sub Menu Close End -->
+
+        <!-- Main Menu -->
+        <ul class="main-menu overlay-bg">
+            <!-- Menu Box -->
+            <li class="nav-box mouseover-image-change active">
+                <a href="/" class="pointer-large nav-link">
+                    <span class="nav-btn active" data-text="home">.home</span>
+                </a>
+                <div class="mouseover-image" style="background-image: url("{% static 'img/nav-hover/home.png' %}");"></div>
+            </li><!-- Menu Box End -->
+            <!-- Menu Box -->
+            <li class="nav-box mouseover-image-change">
+                <a href="{% url 'service:about' %}" class="pointer-large nav-link">
+                    <span class="nav-btn" data-text="about">.about</span>
+                </a>
+                <div class="mouseover-image" style="background-image: url("{% static 'img/nav-hover/about.png' %}");"></div>
+            </li><!-- Menu Box End -->
+            <!-- Menu Box -->
+            <li class="nav-box mouseover-image-change">
+                <a href="{% url 'resume:resume' %}" class="pointer-large nav-link">
+                    <span class="nav-btn" data-text="resume">.resume</span>
+                </a>
+                <div class="mouseover-image" style="background-image: url("{% static 'img/nav-hover/resume.png' %}");"></div>
+            </li><!-- Menu Box End -->
+            <!-- Menu Box -->
+            <li class="nav-box mouseover-image-change submenu-open">
+                <a class="pointer-large nav-link" href=" {% url 'portfolio'%}" >
+                    <span class="nav-btn" data-text="portfolio">.portfolio</span>
+                </a>
+               
+                <div class="mouseover-image" style="background-image: url("{% static 'img/nav-hover/portfolio.png' %}");"></div>
+            </li><!-- Menu Box End -->
+            <!-- Menu Box -->
+            <li class="nav-box mouseover-image-change submenu-open">
+                <a class="pointer-large nav-link" href="{% url 'blog:post_list' %}">
+                    <span class="nav-btn" data-text="blog">.blog</span>
+                </a>
+                <!-- Sub Menu
+                <ul class="submenu">
+                    <li class="nav-box">
+                        <a href="blog.html" class="pointer-large">
+                            <span class="nav-btn" data-text="blog">.blog</span>
+                        </a>
+                    </li>
+                    <li class="nav-box">
+                        <a href="blog-details.html" class="pointer-large">
+                            <span class="nav-btn" data-text="blog details">.blog details</span>
+                        </a>
+                    </li>
+                </ul>Submenu End -->
+                <div class="mouseover-image" style="background-image: url(img/nav-hover/blog.png);"></div>
+            </li><!-- Menu Box End -->
+            <!-- Menu Box -->
+            <li class="nav-box mouseover-image-change">
+                <a href="{% url 'service:contact' %}" class="pointer-large nav-link">
+                    <span class="nav-btn" data-text="contact">.contact</span>
+                </a>
+                <div class="mouseover-image" style="background-image: url(img/nav-hover/contact.png);"></div>
+            </li><!-- Menu Box End -->
+        </ul><!-- Main Menu End -->
+    </nav><!-- Menu Container End -->
+    <button id="back_to_top" class="btnEntrance pointer-href"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- All JS Called Here -->
+    <script src="{% static 'js/vendor/modernizr-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/particles.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/contact-form.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+
+</html>
