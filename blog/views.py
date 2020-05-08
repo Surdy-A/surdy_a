@@ -122,7 +122,7 @@ def post_share(request, post_id):
             sent = True
     else:
         form = EmailPostForm()
-    return render(request, 'blog/post/share.html', {'post': post,
+    return render(request, 'Post/share.html', {'post': post,
                                                     'form': form,
                                                     'sent': sent})
 
@@ -139,7 +139,7 @@ def post_search(request):
                 similarity=TrigramSimilarity('title', query),
             ).filter(similarity__gt=0.3).order_by('-similarity')
     return render(request,
-                  'blog/post/search.html',
+                  'Post/search.html',
                   {'form': form,
                    'query': query,
                    'results': results})
